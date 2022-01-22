@@ -1,6 +1,10 @@
 package app;
 
-import app.controller.model.StudentJSON;
+import app.controller.model.AdvertisementJSON;
+import app.repository.advertisement.AdvertisementRepository;
+import app.repository.advertisement.impl.AdvertisementRepositoryImpl;
+import app.service.advertisemnt.utils.AdvertisementUtils;
+import app.service.advertisemnt.utils.impl.AdvertisementsUtilsImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +12,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 @SpringBootApplication
 public class Application {
@@ -33,67 +36,12 @@ public class Application {
     }
 
     @Bean
-    public StudentDatabaseService databaseService() {
-        return new StudentDatabaseService();
+    public AdvertisementRepository advertisementRepository() {
+        return new AdvertisementRepositoryImpl();
     }
 
-//    public abstract class DatabaseService{
-//        private HashMap<Integer, >
-//    }
-
-    public static class StudentDatabaseService {
-       private HashMap<Integer, StudentJSON> db;
-
-       public StudentDatabaseService(){
-           db = new HashMap<>();
-           db.put(
-                   1,
-                   new StudentJSON("Sasha", "Sidorov", 15, "#196", Arrays.asList("Java", "JS"))
-           );
-           db.put(
-                   2,
-                   new StudentJSON("Valerii", "Nikitin", 25, "NTUU KPI named by Ihor Sikorsky", Arrays.asList("Java", "Python"))
-           );
-           db.put(
-                   3,
-                   new StudentJSON("Platon", "Todorashko", 15, "KPI", Arrays.asList("Java"))
-           );
-           db.put(
-                   4,
-                   new StudentJSON("Rostik", "Perinkiy", 15, "???", Arrays.asList("Java"))
-           );
-           db.put(
-                   5,
-                   new StudentJSON("Dima", "???", 15, "???", Arrays.asList("Java"))
-           );
-       }
-
-       public StudentJSON getStudent(Integer id) {
-           return db.get(id);
-       }
-
-       public void deleteStudent(Integer id) {
-           db.remove(id);
-       }
-
-       public Integer createStudent(StudentJSON json) {
-           int max = -1;
-           for (Integer id : db.keySet()) {
-               if (max < id) {
-                   max = id;
-               }
-           }
-
-           int id = max + 1;
-           db.put(id, json);
-           return id;
-       }
-
-        public void updateStudent(Integer studentId, StudentJSON json) {
-            if (!db.containsKey(studentId)){
-                throw new RuntimeException("Student with such ID does not exist");
-            }
-            db.put(studentId, json);
-        }
+    @Bean
+    public AdvertisementUtils advertisementUtils(){
+        return new AdvertisementsUtilsImpl();
     }
 }

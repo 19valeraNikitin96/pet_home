@@ -1,6 +1,6 @@
 # API
 
-## Advetisements
+## Advertisements
 ### Create
 Request </p>
 Method: **POST** <p>
@@ -103,7 +103,38 @@ HTTP status: **200** <p>
 ```
 
 ### Update by ID
-TODO
+Request </p>
+Method: **PUT** <p>
+_URL: **/advertisements/{advertisementId}**_
+
+Request body: <p>
+```json
+{
+  "pet-name": "Jerry",
+  "signs": ["black spot", "white color"],
+  "age": 2,
+  "type": "FOUND | LOST | OBSERVED",
+  "location": {
+    "city": "Kyiv",
+    "district": "Solomenskiy",
+    "street": "Shevchenka"
+  },
+  "date": {
+    "day": 13,
+    "month": 5,
+    "year": 2021
+  },
+  "owner-id": 11
+}
+```
+Response body</p>
+
+HTTP status: **200** <p>
+```json
+{
+  "id": 13
+}
+```
 
 ## User
 ### Create
@@ -137,13 +168,77 @@ HTTP status: **200** <p>
 ```
 
 ### Delete by ID
-TODO
+Request </p>
+Method: **DELETE** <p>
+_URL: **/users/{userId}**_
+
+Response body</p>
+HTTP status: **200** <p>
+```json
+{
+  "msg": "Ok"
+}
+```
 
 ### Update by ID
-TODO
+Request </p>
+Method: **PUT** <p>
+_URL: **/advertisements/{advertisementId}**_
+
+Request body: <p>
+```json
+{
+  "firstname": "Valerii",
+  "lastname": "Nikitin",
+  "phone-numbers": ["0667842311"],
+  "email-addresses": ["vn@gmail.com"],
+  "username": "vampir666",
+  "password": "12345",
+  "notifications": {
+    "apps": ["Telegram", "Viber", "Email"],
+    "frequency": 3
+  },
+  "location-id": 55
+}
+```
+Response body</p>
+
+HTTP status: **200** <p>
+```json
+{
+  "id": 13
+}
+```
 
 ### Get by ID
-TODO
+Request </p>
+Method: **GET** <p>
+_URL: **/users/{userId}**_
+
+Response body</p>
+HTTP status: **200** <p>
+```json
+{
+  "firstname": "Valerii",
+  "lastname": "Nikitin",
+  "phone-numbers": ["0667842311"],
+  "email-addresses": ["vn@gmail.com"],
+  "username": "vampir666",
+  "password": "12345",
+  "notifications": {
+    "apps": ["Telegram", "Viber", "Email"],
+    "frequency": 3
+  },
+  "location-id": 55
+}
+```
+HTTP status: **404** <p>
+```json
+{
+  "error-id": 1,
+  "error-msg": "Not found"
+}
+```
 
 ## Messenger
 ### Create chat
