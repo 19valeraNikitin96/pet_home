@@ -2,6 +2,8 @@ package app.repository.advertisement.impl;
 
 import app.repository.advertisement.AdvertisementRepository;
 import app.repository.advertisement.model.AdvertisementEntity;
+import app.repository.location.LocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 
@@ -10,8 +12,12 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
     private Integer id = 1;
     private HashMap<Integer, AdvertisementEntity> db = new HashMap<>();
 
+    @Autowired
+    private LocationRepository locationRepository;
+
     @Override
     public Integer create(AdvertisementEntity entity) {
+        //TODO check owner entity existence
         db.put(id, entity);
         entity.setId(this.id);
         this.id++;
@@ -27,6 +33,7 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
         if (entity.getPetName() != null) {
             dbEntity.setPetName(entity.getPetName());
         }
+
         //TODO rewrite rest of fields
     }
 

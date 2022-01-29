@@ -1,5 +1,8 @@
 package app.repository.advertisement.model;
 
+import app.repository.DateEntity;
+import app.repository.location.model.LocationEntity;
+
 import java.util.List;
 
 public class AdvertisementEntity {
@@ -8,20 +11,20 @@ public class AdvertisementEntity {
     private List<String> signs;
     private Integer age;
     private String type;
-    private LocationEntity location;
+    private Integer locationId;
     private DateEntity date;
     private Integer ownerId;
 
     public AdvertisementEntity() {
     }
 
-    public AdvertisementEntity(Integer id, String petName, List<String> signs, Integer age, String type, LocationEntity location, DateEntity date, Integer ownerId) {
+    public AdvertisementEntity(Integer id, String petName, List<String> signs, Integer age, String type, Integer locationId, DateEntity date, Integer ownerId) {
         this.id = id;
         this.petName = petName;
         this.signs = signs;
         this.age = age;
         this.type = type;
-        this.location = location;
+        this.locationId = locationId;
         this.date = date;
         this.ownerId = ownerId;
     }
@@ -66,12 +69,12 @@ public class AdvertisementEntity {
         this.type = type;
     }
 
-    public LocationEntity getLocation() {
-        return location;
+    public Integer getLocationId() {
+        return locationId;
     }
 
-    public void setLocation(LocationEntity location) {
-        this.location = location;
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
     }
 
     public DateEntity getDate() {
