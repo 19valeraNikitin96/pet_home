@@ -1,9 +1,9 @@
-package app.service.advertisemnt.impl;
+package app.service.advertisement.impl;
 
 import app.controller.model.AdvertisementJSON;
 import app.repository.advertisement.AdvertisementRepository;
-import app.service.advertisemnt.AdvertisementService;
-import app.service.advertisemnt.utils.AdvertisementUtils;
+import app.service.advertisement.AdvertisementService;
+import app.service.advertisement.utils.AdvertisementUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package app.service.advertisemnt;
+package app.service.advertisement;
 
 import app.controller.model.AdvertisementJSON;
 
 public interface AdvertisementService {
 
-    public Integer create(AdvertisementJSON json);
+    Integer create(AdvertisementJSON json);
 }

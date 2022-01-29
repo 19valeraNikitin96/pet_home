@@ -1,10 +1,13 @@
 package app;
 
-import app.controller.model.AdvertisementJSON;
 import app.repository.advertisement.AdvertisementRepository;
 import app.repository.advertisement.impl.AdvertisementRepositoryImpl;
-import app.service.advertisemnt.utils.AdvertisementUtils;
-import app.service.advertisemnt.utils.impl.AdvertisementsUtilsImpl;
+import app.repository.location.LocationRepository;
+import app.repository.location.impl.LocationRepositoryImpl;
+import app.service.advertisement.utils.AdvertisementUtils;
+import app.service.advertisement.utils.impl.AdvertisementUtilsImpl;
+import app.service.location.utils.LocationUtils;
+import app.service.location.utils.LocationUtilsImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -42,6 +45,16 @@ public class Application {
 
     @Bean
     public AdvertisementUtils advertisementUtils(){
-        return new AdvertisementsUtilsImpl();
+        return new AdvertisementUtilsImpl();
+    }
+
+    @Bean
+    public LocationRepository locationRepository(){
+        return new LocationRepositoryImpl();
+    }
+
+    @Bean
+    public LocationUtils locationUtils(){
+        return new LocationUtilsImpl();
     }
 }

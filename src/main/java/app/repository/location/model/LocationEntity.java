@@ -1,15 +1,17 @@
-package app.controller.model;
+package app.repository.location.model;
 
-public class LocationJSON {
+import java.util.Objects;
+
+public class LocationEntity {
     private Integer id;
     private String city;
     private String district;
     private String street;
 
-    public LocationJSON() {
+    public LocationEntity() {
     }
 
-    public LocationJSON(Integer id, String city, String district, String street) {
+    public LocationEntity(Integer id, String city, String district, String street) {
         this.id = id;
         this.city = city;
         this.district = district;
@@ -47,5 +49,17 @@ public class LocationJSON {
     public void setId(Integer id) {
         this.id = id;
     }
-}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LocationEntity that = (LocationEntity) o;
+        return Objects.equals(city, that.city) && Objects.equals(district, that.district) && Objects.equals(street, that.street);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, city, district, street);
+    }
+}
