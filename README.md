@@ -39,6 +39,16 @@ HTTP status: **200** <p>
 Request </p>
 Method: **GET** <p>
 _URL: **/advertisements**_
+Request body:
+```json
+{
+    "pov": "OWNER | VIEWER",
+    "paged": {
+      "current": 2,
+      "size": 6
+    }
+  }
+```
 
 Response body</p>
 HTTP status: **200** <p>
@@ -48,14 +58,7 @@ HTTP status: **200** <p>
     13,
     15,
     19
-  ],
-  "params": {
-    "pov": "OWNER | VIEWER",
-    "paged": {
-      "current": 2,
-      "size": 6
-    }
-  }
+  ]
 }
 ```
 
