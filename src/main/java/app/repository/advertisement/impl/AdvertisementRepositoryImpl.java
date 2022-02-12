@@ -5,7 +5,9 @@ import app.repository.advertisement.model.AdvertisementEntity;
 import app.repository.location.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class AdvertisementRepositoryImpl implements AdvertisementRepository {
 
@@ -45,5 +47,10 @@ public class AdvertisementRepositoryImpl implements AdvertisementRepository {
     @Override
     public void delete(Integer id) {
         db.remove(id);
+    }
+
+    @Override
+    public List<AdvertisementEntity> getAll() {
+        return new ArrayList<>(db.values());
     }
 }

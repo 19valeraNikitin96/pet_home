@@ -1,10 +1,13 @@
 package app.controller;
 
 import app.controller.model.AdvertisementJSON;
+import app.controller.model.AdvertisementRequestJSON;
 import app.service.advertisement.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1")
@@ -34,4 +37,24 @@ public class AdvertisementController {
         return ResponseEntity.ok(obj);
     }
 
+    @GetMapping("/advertisemnts")
+    public ResponseEntity getAdvertisements(@RequestBody AdvertisementRequestJSON json) {
+        List<Integer> advertisementIds = advertisementService.getAdvertisementIds(json);
+        Object obj = new Object(){
+            {
+                setAdvertisementIds(advertisementIds);
+            }
+
+            private List<Integer> ids;
+
+            public void setAdvertisementIds(List<Integer> ids){
+                this.ids = ids;
+            }
+
+            public List<Integer> getIds(){
+                return this.ids;
+            }
+        };
+        return ResponseEntity.ok(obj);
+    }
 }
