@@ -1,7 +1,7 @@
 package app.service.advertisement.utils;
 
-import app.controller.model.AdvertisementJSON;
-import app.controller.model.DateJSON;
+import app.controller.advertisement.model.AdvertisementJSON;
+import app.controller.advertisement.model.DateJSON;
 import app.repository.DateEntity;
 import app.repository.advertisement.model.AdvertisementEntity;
 

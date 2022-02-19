@@ -1,4 +1,4 @@
-package app.controller.model;
+package app.controller.advertisement.model;
 
 import lombok.*;
 

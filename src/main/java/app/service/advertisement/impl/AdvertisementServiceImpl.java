@@ -1,7 +1,7 @@
 package app.service.advertisement.impl;
 
-import app.controller.model.AdvertisementJSON;
-import app.controller.model.AdvertisementRequestJSON;
+import app.controller.advertisement.model.AdvertisementJSON;
+import app.controller.advertisement.model.AdvertisementRequestJSON;
 import app.repository.advertisement.AdvertisementRepository;
 import app.repository.advertisement.model.AdvertisementEntity;
 import app.service.UserPOVType;
@@ -10,7 +10,6 @@ import app.service.advertisement.utils.AdvertisementUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
