@@ -1,10 +1,9 @@
 package app.service.advertisement.utils.impl;
 
-import app.controller.model.AdvertisementJSON;
-import app.controller.model.DateJSON;
+import app.controller.advertisement.model.AdvertisementJSON;
+import app.controller.advertisement.model.DateJSON;
 import app.repository.DateEntity;
 import app.repository.advertisement.model.AdvertisementEntity;
-import app.repository.location.LocationRepository;
 import app.repository.location.model.LocationEntity;
 import app.service.advertisement.utils.AdvertisementUtils;
 import app.service.location.LocationService;

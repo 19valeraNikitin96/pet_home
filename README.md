@@ -154,10 +154,16 @@ Request body: <p>
   "email-addresses": ["vn@gmail.com"],
   "username": "vampir666",
   "password": "12345",
-  "notifications": {
-    "apps": ["Telegram", "Viber", "Email"],
-    "frequency": 3
-  },
+  "notifications": [
+    {
+      "app": "telegram",
+      "frequency": 3
+    },
+    {
+      "app": "viber",
+      "frequency": 6
+    }
+  ],
   "location-id": 55
 }
 ```

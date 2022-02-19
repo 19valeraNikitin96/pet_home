@@ -1,7 +1,7 @@
 package app.service.advertisement;
 
-import app.controller.model.AdvertisementJSON;
-import app.controller.model.AdvertisementRequestJSON;
+import app.controller.advertisement.model.AdvertisementJSON;
+import app.controller.advertisement.model.AdvertisementRequestJSON;
 
 import java.util.List;
 

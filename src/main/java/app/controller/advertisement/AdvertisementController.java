@@ -1,7 +1,7 @@
-package app.controller;
+package app.controller.advertisement;
 
-import app.controller.model.AdvertisementJSON;
-import app.controller.model.AdvertisementRequestJSON;
+import app.controller.advertisement.model.AdvertisementJSON;
+import app.controller.advertisement.model.AdvertisementRequestJSON;
 import app.service.advertisement.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
