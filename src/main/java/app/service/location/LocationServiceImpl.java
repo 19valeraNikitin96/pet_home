@@ -12,17 +12,7 @@ public class LocationServiceImpl implements LocationService{
     private LocationRepository locationRepository;
 
     @Override
-    public Integer find(LocationEntity entity) {
-        return locationRepository.find(entity);
-    }
-
-    @Override
     public Integer create(LocationEntity entity) {
-        return locationRepository.create(entity);
-    }
-
-    @Override
-    public LocationEntity get(Integer id) {
-        return locationRepository.get(id);
+        return locationRepository.save(entity).getId();
     }
 }
