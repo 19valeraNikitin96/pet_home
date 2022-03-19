@@ -2,9 +2,10 @@ package app.service.advertisement.utils.impl;
 
 import app.controller.advertisement.model.AdvertisementJSON;
 import app.controller.advertisement.model.DateJSON;
-import app.repository.DateEntity;
+import app.repository.date.model.DateEntity;
 import app.repository.advertisement.model.AdvertisementEntity;
 import app.repository.location.model.LocationEntity;
+import app.repository.user.UserRepository;
 import app.service.advertisement.utils.AdvertisementUtils;
 import app.service.location.LocationService;
 import app.service.location.utils.LocationUtils;
@@ -15,7 +16,7 @@ public class AdvertisementUtilsImpl implements AdvertisementUtils {
     @Autowired
     private LocationUtils locationUtils;
     @Autowired
-    private LocationService locationService;
+    private UserRepository userRepository;
 
     @Override
     public AdvertisementEntity toEntity(AdvertisementJSON json) {
@@ -23,18 +24,13 @@ public class AdvertisementUtilsImpl implements AdvertisementUtils {
         res.setPetName(json.getPetName());
         res.setAge(json.getAge());
         res.setId(json.getId());
-        res.setOwnerId(json.getOwnerId());
+        // TODO fix warning
+        res.setOwner(userRepository.findById(json.getOwnerId()).get());
         res.setSigns(json.getSigns());
         res.setType(json.getType());
         {
             LocationEntity location = locationUtils.toEntity(json.getLocation());
-            Integer locationId;
-            try {
-                locationId = locationService.find(location);
-            } catch (RuntimeException e) {
-                locationId = locationService.create(location);
-            }
-            res.setLocationId(locationId);
+            res.setLocation(location);
         }
         res.setDate(this.toEntity(json.getDate()));
         return res;
@@ -43,14 +39,14 @@ public class AdvertisementUtilsImpl implements AdvertisementUtils {
     @Override
     public AdvertisementJSON toJSON(AdvertisementEntity entity) {
         AdvertisementJSON json = new AdvertisementJSON();
-        json.setPetName(json.getPetName());
-        json.setAge(json.getAge());
-        json.setId(json.getId());
-        json.setOwnerId(json.getOwnerId());
-        json.setSigns(json.getSigns());
-        json.setType(json.getType());
+        json.setPetName(entity.getPetName());
+        json.setAge(entity.getAge());
+        json.setId(entity.getId());
+        json.setOwnerId(entity.getOwner().getId());
+        json.setSigns(entity.getSigns());
+        json.setType(entity.getType());
         {
-            LocationEntity location = locationService.get(entity.getLocationId());
+            LocationEntity location = entity.getLocation();
             json.setLocation(locationUtils.toJSON(location));
         }
         json.setDate(this.toJSON(entity.getDate()));

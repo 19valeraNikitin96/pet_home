@@ -1,16 +1,20 @@
 package app.repository.location;
 
 import app.repository.location.model.LocationEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface LocationRepository {
+import java.util.List;
+import java.util.Optional;
 
-    Integer create(LocationEntity entity);
+@Repository
+public interface LocationRepository extends JpaRepository<LocationEntity, Integer> {
 
-    void update(LocationEntity entity);
+    LocationEntity save(LocationEntity persisted);
 
-    LocationEntity get(Integer id);
+    Optional<LocationEntity> findById(Integer id);
 
-    void delete(Integer id);
+    void delete(LocationEntity id);
 
-    Integer find(LocationEntity entity);
+    List<LocationEntity> findAll();
 }

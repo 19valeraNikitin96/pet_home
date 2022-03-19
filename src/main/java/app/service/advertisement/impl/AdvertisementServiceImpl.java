@@ -25,21 +25,21 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public Integer create(AdvertisementJSON json) {
-        return advertisementRepository.create(advertisementUtils.toEntity(json));
+        return advertisementRepository.save(advertisementUtils.toEntity(json)).getId();
     }
 
     @Override
     public List<Integer> getAdvertisementIds(AdvertisementRequestJSON json) {
         UserPOVType type = UserPOVType.getBy(json.getPov());
-        List<AdvertisementEntity> entities = advertisementRepository.getAll();
+        List<AdvertisementEntity> entities = advertisementRepository.findAll();
 
         Predicate<AdvertisementEntity> predicate;
         switch (type){
             case OWNER:
-                predicate = (entity) -> Objects.equals(entity.getOwnerId(), json.getUserId());
+                predicate = (entity) -> Objects.equals(entity.getOwner(), json.getUserId());
                 break;
             case VIEWER:
-                predicate = (entity) -> !Objects.equals(entity.getOwnerId(), json.getUserId());
+                predicate = (entity) -> !Objects.equals(entity.getOwner(), json.getUserId());
                 break;
             default:
                 throw new RuntimeException("Unexpected user POV");
@@ -52,5 +52,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
                 limit(json.getPaged().getSize()).
                 map(AdvertisementEntity::getId).
                 collect(Collectors.toList());
+    }
+
+    @Override
+    public AdvertisementJSON getBy(Integer advertisementId) {
+        AdvertisementEntity entity = advertisementRepository.getOne(advertisementId);
+        return advertisementUtils.toJSON(entity);
     }
 }

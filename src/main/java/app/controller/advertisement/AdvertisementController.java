@@ -57,4 +57,10 @@ public class AdvertisementController {
         };
         return ResponseEntity.ok(obj);
     }
+
+    @GetMapping("/advertisements/{advertisementId}")
+    public ResponseEntity getAdvertisementBy(@PathVariable Integer advertisementId){
+        AdvertisementJSON res = advertisementService.getBy(advertisementId);
+        return ResponseEntity.ok(res);
+    }
 }

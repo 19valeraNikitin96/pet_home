@@ -1,18 +1,20 @@
 package app.repository.advertisement;
 
 import app.repository.advertisement.model.AdvertisementEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface AdvertisementRepository {
+@Repository
+public interface AdvertisementRepository extends JpaRepository<AdvertisementEntity, Integer> {
 
-    Integer create(AdvertisementEntity entity);
+    AdvertisementEntity save(AdvertisementEntity persisted);
 
-    void update(AdvertisementEntity entity);
+    Optional<AdvertisementEntity> findById(Integer id);
 
-    AdvertisementEntity get(Integer id);
+    void delete(AdvertisementEntity id);
 
-    void delete(Integer id);
-
-    List<AdvertisementEntity> getAll();
+    List<AdvertisementEntity> findAll();
 }

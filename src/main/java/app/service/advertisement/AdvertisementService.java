@@ -10,4 +10,6 @@ public interface AdvertisementService {
     Integer create(AdvertisementJSON json);
 
     List<Integer> getAdvertisementIds(AdvertisementRequestJSON json);
+
+    AdvertisementJSON getBy(Integer advertisementId);
 }

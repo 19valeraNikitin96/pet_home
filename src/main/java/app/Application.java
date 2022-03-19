@@ -1,9 +1,7 @@
 package app;
 
 import app.repository.advertisement.AdvertisementRepository;
-import app.repository.advertisement.impl.AdvertisementRepositoryImpl;
 import app.repository.location.LocationRepository;
-import app.repository.location.impl.LocationRepositoryImpl;
 import app.service.advertisement.utils.AdvertisementUtils;
 import app.service.advertisement.utils.impl.AdvertisementUtilsImpl;
 import app.service.location.utils.LocationUtils;
@@ -39,18 +37,8 @@ public class Application {
     }
 
     @Bean
-    public AdvertisementRepository advertisementRepository() {
-        return new AdvertisementRepositoryImpl();
-    }
-
-    @Bean
     public AdvertisementUtils advertisementUtils(){
         return new AdvertisementUtilsImpl();
-    }
-
-    @Bean
-    public LocationRepository locationRepository(){
-        return new LocationRepositoryImpl();
     }
 
     @Bean
