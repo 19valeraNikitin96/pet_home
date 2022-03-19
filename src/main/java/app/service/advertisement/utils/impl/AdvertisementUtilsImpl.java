@@ -39,12 +39,12 @@ public class AdvertisementUtilsImpl implements AdvertisementUtils {
     @Override
     public AdvertisementJSON toJSON(AdvertisementEntity entity) {
         AdvertisementJSON json = new AdvertisementJSON();
-        json.setPetName(json.getPetName());
-        json.setAge(json.getAge());
-        json.setId(json.getId());
-        json.setOwnerId(json.getOwnerId());
-        json.setSigns(json.getSigns());
-        json.setType(json.getType());
+        json.setPetName(entity.getPetName());
+        json.setAge(entity.getAge());
+        json.setId(entity.getId());
+        json.setOwnerId(entity.getOwner().getId());
+        json.setSigns(entity.getSigns());
+        json.setType(entity.getType());
         {
             LocationEntity location = entity.getLocation();
             json.setLocation(locationUtils.toJSON(location));

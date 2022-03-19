@@ -56,6 +56,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public AdvertisementJSON getBy(Integer advertisementId) {
-        throw new UnsupportedOperationException("Not implemented");
+        AdvertisementEntity entity = advertisementRepository.getOne(advertisementId);
+        return advertisementUtils.toJSON(entity);
     }
 }
