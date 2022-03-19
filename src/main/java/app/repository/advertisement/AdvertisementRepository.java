@@ -14,7 +14,7 @@ public interface AdvertisementRepository extends JpaRepository<AdvertisementEnti
 
     Optional<AdvertisementEntity> findById(Integer id);
 
-    void delete(AdvertisementEntity id);
+    void delete(AdvertisementEntity entity);
 
     List<AdvertisementEntity> findAll();
 }

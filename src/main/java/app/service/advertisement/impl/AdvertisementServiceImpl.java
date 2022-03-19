@@ -10,6 +10,7 @@ import app.service.advertisement.utils.AdvertisementUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -58,5 +59,16 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public AdvertisementJSON getBy(Integer advertisementId) {
         AdvertisementEntity entity = advertisementRepository.getOne(advertisementId);
         return advertisementUtils.toJSON(entity);
+    }
+
+    @Override
+    public void deleteBy(Integer advertisementId) {
+        AdvertisementEntity entity;
+        try {
+            entity = advertisementRepository.getOne(advertisementId);
+        } catch (EntityNotFoundException e){
+            return;
+        }
+        advertisementRepository.delete(entity);
     }
 }
