@@ -63,4 +63,25 @@ public class AdvertisementController {
         AdvertisementJSON res = advertisementService.getBy(advertisementId);
         return ResponseEntity.ok(res);
     }
+
+    @DeleteMapping("/advertisements/{advertisementId}")
+    public ResponseEntity deleteAdvertisement(@PathVariable Integer advertisementId){
+        advertisementService.deleteBy(advertisementId);
+        Object obj = new Object(){
+            {
+                setMsg("Ok");
+            }
+
+            private String msg;
+
+            public String getMsg() {
+                return msg;
+            }
+
+            public void setMsg(String msg) {
+                this.msg = msg;
+            }
+        };
+        return ResponseEntity.ok(obj);
+    }
 }
