@@ -42,4 +42,14 @@ public class UserUtilsImpl implements UserUtils{
                 .frequency(json.getFrequency())
                 .build();
     }
+
+    @Override
+    public UserJSON toJSON(UserEntity e) {
+        return UserJSON.builder()
+                .firstname(e.getPerson().getFirstname())
+                .lastname(e.getPerson().getLastname())
+                .username(e.getUsername())
+                // TODO add other fields
+                .build();
+    }
 }

@@ -1,0 +1,20 @@
+package app.controller.advertisement;
+
+import app.service.advertisement.AdvertisementViewService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class AdvertisementViewController {
+
+    @Autowired
+    private AdvertisementViewService advertisementViewService;
+
+    @GetMapping("/advertisements/view")
+    public String viewAdvertisements(Model model) {
+        model.addAttribute("advertisements", advertisementViewService.getAll());
+        return "view-advertisements";
+    }
+}
