@@ -8,4 +8,6 @@ import app.repository.user.model.UserEntity;
 public interface UserUtils {
     UserEntity toEntity(UserJSON json);
     NotificationEntity toEntity(NotificationJSON json);
+
+    UserJSON toJSON(UserEntity owner);
 }

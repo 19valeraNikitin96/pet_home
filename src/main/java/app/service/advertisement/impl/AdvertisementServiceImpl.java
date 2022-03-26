@@ -71,4 +71,9 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         }
         advertisementRepository.delete(entity);
     }
+
+    @Override
+    public List<AdvertisementJSON> getAll() {
+        return advertisementRepository.findAll().stream().map(e -> advertisementUtils.toJSON(e)).collect(Collectors.toList());
+    }
 }
