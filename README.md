@@ -4,7 +4,7 @@
 ### Create
 Request </p>
 Method: **POST** <p>
-_URL: **/advertisements**_
+_URL: **v1/advertisements**_
 
 Request body: <p>
 ```json

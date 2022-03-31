@@ -30,10 +30,10 @@ public class AdvertisementEntity {
     @Column(name = "type")
     private String type;
     @JoinColumn(name = "location_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private LocationEntity location;
     @JoinColumn(name = "date_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private DateEntity date;
     @JoinColumn(name = "owner_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
