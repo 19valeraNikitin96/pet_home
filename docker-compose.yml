@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  pet_home:
+    image: pet_home
+    environment:
+      - DB_URI=pet_home.mv.db
+    ports:
+      - "8080:8080"
+    container_name: pet_home
+    networks:
+      net:
+        ipv4_address: 172.50.0.10
+networks:
+  pet_home_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.50.0.0/16
