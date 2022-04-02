@@ -54,7 +54,7 @@ Response body</p>
 HTTP status: **200** <p>
 ```json
 {
-  "advertisement-ids": [
+  "ids": [
     13,
     15,
     19

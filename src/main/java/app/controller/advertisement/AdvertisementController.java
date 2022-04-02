@@ -37,7 +37,7 @@ public class AdvertisementController {
         return ResponseEntity.ok(obj);
     }
 
-    @GetMapping("/advertisemnts")
+    @GetMapping("/advertisements")
     public ResponseEntity getAdvertisements(@RequestBody AdvertisementRequestJSON json) {
         List<Integer> advertisementIds = advertisementService.getAdvertisementIds(json);
         Object obj = new Object(){

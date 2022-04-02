@@ -37,10 +37,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         Predicate<AdvertisementEntity> predicate;
         switch (type){
             case OWNER:
-                predicate = (entity) -> Objects.equals(entity.getOwner(), json.getUserId());
+                predicate = (entity) -> Objects.equals(entity.getOwner().getId(), json.getUserId());
                 break;
             case VIEWER:
-                predicate = (entity) -> !Objects.equals(entity.getOwner(), json.getUserId());
+                predicate = (entity) -> !Objects.equals(entity.getOwner().getId(), json.getUserId());
                 break;
             default:
                 throw new RuntimeException("Unexpected user POV");
