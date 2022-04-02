@@ -1,7 +1,5 @@
 package app;
 
-import app.repository.advertisement.AdvertisementRepository;
-import app.repository.location.LocationRepository;
 import app.service.advertisement.utils.AdvertisementUtils;
 import app.service.advertisement.utils.impl.AdvertisementUtilsImpl;
 import app.service.location.utils.LocationUtils;
