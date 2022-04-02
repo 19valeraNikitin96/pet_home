@@ -4,13 +4,21 @@ services:
   pet_home:
     image: pet_home
     environment:
-      - DB_URI=pet_home.mv.db
+      - DB_URI=/app/pet_home.mv.db
     ports:
       - "8080:8080"
     container_name: pet_home
     networks:
-      net:
+      pet_home_net:
         ipv4_address: 172.50.0.10
+  pet_home_testing:
+    environment:
+      - ADDR=172.50.0.10
+    image: pet_home_testing
+    container_name: pet_home_testing
+    networks:
+      pet_home_net:
+        ipv4_address: 172.50.0.101
 networks:
   pet_home_net:
     driver: bridge
