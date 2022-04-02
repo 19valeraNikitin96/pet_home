@@ -19,7 +19,7 @@ class TestAdvertisementAPI(ApiV1):
         data = json.loads(response.text)
 
         id = data.get('id', None)
-        assert id != None, f"Could not find id in {data}"
+        assert id is not None, f"Could not find id in {data}"
 
         assert type(id) is int, f"ID has type {type(id)} instead {int}"
 
