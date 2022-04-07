@@ -38,7 +38,7 @@ HTTP status: **200** <p>
 ### Get
 Request </p>
 Method: **GET** <p>
-_URL: **/advertisements**_
+_URL: **v1/advertisements**_
 Request body:
 ```json
 {
