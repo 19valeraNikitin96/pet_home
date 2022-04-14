@@ -22,7 +22,7 @@ services:
     image: pet_home_testing
     depends_on:
       - pet_home
-#          condition: service_healthy
+    command: dockerize -wait tcp://pet_home:8080
     container_name: pet_home_testing
     networks:
       pet_home_net:
