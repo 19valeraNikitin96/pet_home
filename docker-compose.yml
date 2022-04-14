@@ -12,7 +12,7 @@ services:
       pet_home_net:
         ipv4_address: 172.50.0.10
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080/advertisements/view" ]
+      test: [ "CMD", "curl", "-f", "http://pet_home:8080/advertisements/view" ]
       interval: 30s
       timeout: 10s
       retries: 5
