@@ -21,7 +21,7 @@ services:
       - ADDR=172.50.0.10
     image: pet_home_testing
     depends_on:
-      pet_home:
+      - pet_home:
         condition: service_healthy
     container_name: pet_home_testing
     networks:
