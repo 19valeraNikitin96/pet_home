@@ -22,7 +22,7 @@ services:
     image: pet_home_testing
     depends_on:
       - pet_home:
-        condition: service_healthy
+          condition: service_healthy
     container_name: pet_home_testing
     networks:
       pet_home_net:
