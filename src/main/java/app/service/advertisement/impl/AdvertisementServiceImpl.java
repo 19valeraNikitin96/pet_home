@@ -4,6 +4,7 @@ import app.controller.advertisement.model.AdvertisementJSON;
 import app.controller.advertisement.model.AdvertisementRequestJSON;
 import app.repository.advertisement.AdvertisementRepository;
 import app.repository.advertisement.model.AdvertisementEntity;
+import app.repository.user.UserRepository;
 import app.service.UserPOVType;
 import app.service.advertisement.AdvertisementService;
 import app.service.advertisement.utils.AdvertisementUtils;
@@ -23,6 +24,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     private AdvertisementRepository advertisementRepository;
     @Autowired
     private AdvertisementUtils advertisementUtils;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Integer create(AdvertisementJSON json) {
@@ -75,5 +78,21 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public List<AdvertisementJSON> getAll() {
         return advertisementRepository.findAll().stream().map(e -> advertisementUtils.toJSON(e)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer updateBy(Integer advertisementId, AdvertisementJSON json) {
+        AdvertisementEntity entity = advertisementRepository.getOne(advertisementId);
+        if (json.getAge() != null){
+            entity.setAge(json.getAge());
+        }
+        if (json.getPetName() != null){
+            entity.setPetName(json.getPetName());
+        }
+        if (json.getOwnerId() != null){
+            entity.setOwner(userRepository.getOne(json.getOwnerId()));
+        }
+        // TODO add rest of fields
+        return advertisementRepository.save(entity).getId();
     }
 }

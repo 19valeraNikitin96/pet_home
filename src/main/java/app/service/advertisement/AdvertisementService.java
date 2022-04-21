@@ -16,4 +16,6 @@ public interface AdvertisementService {
     void deleteBy(Integer advertisementId);
 
     List<AdvertisementJSON> getAll();
+
+    Integer updateBy(Integer advertisementId, AdvertisementJSON json);
 }

@@ -84,4 +84,26 @@ public class AdvertisementController {
         };
         return ResponseEntity.ok(obj);
     }
+
+    @PutMapping("/advertisements/{advertisementId}")
+    public ResponseEntity updateById(@PathVariable Integer advertisementId, @RequestBody AdvertisementJSON json){
+        Integer res = advertisementService.updateBy(advertisementId, json);
+
+        Object obj = new Object(){
+            {
+                setId(res);
+            }
+
+            private Integer id;
+
+            public void setId(Integer id){
+                this.id = id;
+            }
+
+            public Integer getId(){
+                return this.id;
+            }
+        };
+        return ResponseEntity.ok(obj);
+    }
 }
