@@ -38,4 +38,12 @@ public class UserController {
         };
         return ResponseEntity.ok(obj);
     }
+
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity getById(@PathVariable("userId") Integer id) {
+        return ResponseEntity.ok(userService.getById(   id));
+    }
+
+
 }

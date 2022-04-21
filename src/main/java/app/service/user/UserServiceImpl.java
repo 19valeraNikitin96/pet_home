@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService {
     public Integer create(UserJSON json) {
         return userRepository.save(userUtils.toEntity(json)).getId();
     }
+
+    @Override
+    public UserJSON getById(Integer id) {
+        return userUtils.toJSON(userRepository.findById(id).get());
+    }
 }
