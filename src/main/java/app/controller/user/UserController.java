@@ -39,11 +39,29 @@ public class UserController {
         return ResponseEntity.ok(obj);
     }
 
-
     @GetMapping("/users/{userId}")
     public ResponseEntity getById(@PathVariable("userId") Integer id) {
-        return ResponseEntity.ok(userService.getById(   id));
+        return ResponseEntity.ok(userService.getById(id));
     }
 
+    @PutMapping("/users/{userId}")
+    public ResponseEntity updateById(@RequestBody UserJSON json, @PathVariable("userId") Integer id){
+        Integer userId = userService.updateUser(id, json);
+        Object obj = new Object(){
+            {
+                setId(userId);
+            }
 
+            private Integer id;
+
+            public void setId(Integer id){
+                this.id = id;
+            }
+
+            public Integer getId(){
+                return this.id;
+            }
+        };
+        return ResponseEntity.ok(obj);
+    }
 }
