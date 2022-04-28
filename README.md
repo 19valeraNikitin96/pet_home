@@ -192,7 +192,7 @@ HTTP status: **200** <p>
 ### Update by ID
 Request </p>
 Method: **PUT** <p>
-_URL: **/advertisements/{advertisementId}**_
+_URL: **/users/{userId}**_
 
 Request body: <p>
 ```json
