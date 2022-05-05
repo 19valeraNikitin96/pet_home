@@ -19,3 +19,10 @@ INSERT INTO USERS (id, username, password, person_id) VALUES
   (99998, 'user123', '54321', 99998);
 INSERT INTO ADVERTISEMENTS (id, pet_name, age, type, location_id, date_id, owner_id) VALUES
   (99998, 'Noname', 1, 'FOUND', 99998, 99998, 99998);
+
+INSERT INTO MESSAGES (id, seen, content, sender_id, receiver_id) VALUES
+  (1, 1, 'Hello!', 99998, 99999);
+INSERT INTO MESSAGES (id, seen, content, sender_id, receiver_id) VALUES
+  (2, 1, 'Hi!', 99999, 99998);
+INSERT INTO MESSAGES (id, seen, content, sender_id, receiver_id) VALUES
+  (3, 0, 'How are you!', 99998, 99999);
