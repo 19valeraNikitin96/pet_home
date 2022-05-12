@@ -1,15 +1,13 @@
 package app.controller.user;
 
-import app.controller.advertisement.model.AdvertisementJSON;
-import app.controller.advertisement.model.AdvertisementRequestJSON;
+import app.controller.user.security.JwtProvider;
+import app.controller.user.model.AuthRequestJSON;
 import app.controller.user.model.UserJSON;
-import app.service.advertisement.AdvertisementService;
+import app.repository.user.model.UserEntity;
 import app.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1")
@@ -17,6 +15,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JwtProvider jwtProvider;
 
     @PostMapping("/users")
     public ResponseEntity createUser(@RequestBody UserJSON json) {
@@ -60,6 +60,49 @@ public class UserController {
 
             public Integer getId(){
                 return this.id;
+            }
+        };
+        return ResponseEntity.ok(obj);
+    }
+
+    @PostMapping("/users/register")
+    public ResponseEntity registerUser(@RequestBody UserJSON user) {
+        Integer userId = userService.create(user);
+        Object obj = new Object(){
+            {
+                setId(userId);
+            }
+
+            private Integer id;
+
+            public void setId(Integer id){
+                this.id = id;
+            }
+
+            public Integer getId(){
+                return this.id;
+            }
+        };
+        return ResponseEntity.ok(obj);
+    }
+
+    @PostMapping("/users/auth")
+    public ResponseEntity auth(@RequestBody AuthRequestJSON request) {
+        UserEntity u = userService.findByUsernameAndPassword(request.getUsername(), request.getPassword());
+        String generatedToken = jwtProvider.generateToken(u.getUsername());
+        Object obj = new Object(){
+            {
+                setToken(generatedToken);
+            }
+
+            private String token;
+
+            public String getToken() {
+                return token;
+            }
+
+            public void setToken(String token) {
+                this.token = token;
             }
         };
         return ResponseEntity.ok(obj);
