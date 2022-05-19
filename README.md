@@ -1,5 +1,26 @@
 # API
 
+### Authorization
+Request </p>
+Method: **POST** <p>
+_URL: **v1/users/auth**_
+
+Request body: <p>
+```json
+{
+  "username": "Bogdan1980",
+  "password": "12345"
+}
+```
+Response body</p>
+
+HTTP status: **200** <p>
+```json
+{
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCb2dkYW4xOTgwIiwiZXhwIjoxNjU0MjAzNjAwfQ.tu8Dv5U6MRN6hFMnoI5AXQ0htUZVe0Xd9iF6Iy9mohL3tZqRkNKcszcLqqCWeebXp4h4mBJvipLmtzRubbZYUg"
+}
+```
+
 ## Advertisements
 ### Create
 Request </p>
@@ -22,8 +43,7 @@ Request body: <p>
     "day": 13,
     "month": 5,
     "year": 2021
-  },
-  "owner-id": 11
+  }
 }
 ```
 Response body</p>
@@ -65,7 +85,7 @@ HTTP status: **200** <p>
 ### Get by ID
 Request </p>
 Method: **GET** <p>
-_URL: **/advertisements/{advertisementId}**_
+_URL: **/v1/advertisements/{advertisementId}**_
 
 Response body</p>
 HTTP status: **200** <p>
@@ -80,8 +100,7 @@ HTTP status: **200** <p>
     "day": 13,
     "month": 5,
     "year": 2021
-  },
-  "owner-id": 11
+  }
 }
 ```
 HTTP status: **404** <p>
@@ -95,7 +114,7 @@ HTTP status: **404** <p>
 ### Delete by ID
 Request </p>
 Method: **DELETE** <p>
-_URL: **/advertisements/{advertisementId}**_
+_URL: **/v1/advertisements/{advertisementId}**_
 
 Response body</p>
 HTTP status: **200** <p>
@@ -108,7 +127,7 @@ HTTP status: **200** <p>
 ### Update by ID
 Request </p>
 Method: **PUT** <p>
-_URL: **/advertisements/{advertisementId}**_
+_URL: **/v1/advertisements/{advertisementId}**_
 
 Request body: <p>
 ```json
@@ -126,8 +145,7 @@ Request body: <p>
     "day": 13,
     "month": 5,
     "year": 2021
-  },
-  "owner-id": 11
+  }
 }
 ```
 Response body</p>
@@ -143,7 +161,7 @@ HTTP status: **200** <p>
 ### Create
 Request </p>
 Method: **POST** <p>
-_URL: **/users**_
+_URL: **/v1/users**_
 
 Request body: <p>
 ```json
@@ -179,7 +197,7 @@ HTTP status: **200** <p>
 ### Delete by ID
 Request </p>
 Method: **DELETE** <p>
-_URL: **/users/{userId}**_
+_URL: **/v1/users/{userId}**_
 
 Response body</p>
 HTTP status: **200** <p>
@@ -192,7 +210,7 @@ HTTP status: **200** <p>
 ### Update by ID
 Request </p>
 Method: **PUT** <p>
-_URL: **/users/{userId}**_
+_URL: **/v1/users/{userId}**_
 
 Request body: <p>
 ```json
@@ -222,7 +240,7 @@ HTTP status: **200** <p>
 ### Get by ID
 Request </p>
 Method: **GET** <p>
-_URL: **/users/{userId}**_
+_URL: **/v1/users/{userId}**_
 
 Response body</p>
 HTTP status: **200** <p>
@@ -248,13 +266,3 @@ HTTP status: **404** <p>
   "error-msg": "Not found"
 }
 ```
-
-## Messenger
-### Create chat
-TODO
-
-### Send message
-TODO
-
-### Get messages
-
