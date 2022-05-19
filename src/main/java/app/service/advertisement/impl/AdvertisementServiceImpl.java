@@ -8,6 +8,7 @@ import app.repository.user.UserRepository;
 import app.service.UserPOVType;
 import app.service.advertisement.AdvertisementService;
 import app.service.advertisement.utils.AdvertisementUtils;
+import app.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     private AdvertisementUtils advertisementUtils;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     @Override
     public Integer create(AdvertisementJSON json) {
@@ -40,10 +43,10 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         Predicate<AdvertisementEntity> predicate;
         switch (type){
             case OWNER:
-                predicate = (entity) -> Objects.equals(entity.getOwner().getId(), json.getUserId());
+                predicate = (entity) -> Objects.equals(entity.getOwner().getId(), userService.getCurrentUserId());
                 break;
             case VIEWER:
-                predicate = (entity) -> !Objects.equals(entity.getOwner().getId(), json.getUserId());
+                predicate = (entity) -> !Objects.equals(entity.getOwner().getId(), userService.getCurrentUserId());
                 break;
             default:
                 throw new RuntimeException("Unexpected user POV");

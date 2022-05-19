@@ -6,6 +6,8 @@ import app.repository.user.UserRepository;
 import app.repository.user.model.UserEntity;
 import app.service.user.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +63,12 @@ public class UserServiceImpl implements UserService {
     public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity entity = this.findByUsername(username);
         return new CustomUserDetails(entity);
+    }
+
+    @Override
+    public Integer getCurrentUserId() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        CustomUserDetails details = (CustomUserDetails) principal;
+        return details.getId();
     }
 }

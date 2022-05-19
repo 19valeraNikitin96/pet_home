@@ -20,13 +20,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().disable()
                 .csrf().disable()
+                .headers().frameOptions().disable()
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
 //                .antMatchers("/admin/*").hasRole("ADMIN")
 //                .antMatchers("/user/*").hasRole("USER")
                 .antMatchers("/v1/users/register", "/v1/users/auth").permitAll()
-                .antMatchers("/**").authenticated()
+//                .antMatchers("/**").authenticated()
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }

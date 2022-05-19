@@ -14,4 +14,6 @@ public interface UserService {
     UserEntity findByUsernameAndPassword(String username, String password);
 
     CustomUserDetails loadUserByUsername(String username);
+
+    Integer getCurrentUserId();
 }

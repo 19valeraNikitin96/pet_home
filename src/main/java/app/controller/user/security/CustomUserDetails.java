@@ -9,10 +9,12 @@ import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
+    private Integer id;
     private String username;
     private String password;
 
     public CustomUserDetails(UserEntity entity){
+        this.id = entity.getId();
         this.username = entity.getUsername();
         this.password = entity.getPassword();
     }
@@ -50,5 +52,9 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Integer getId(){
+        return this.id;
     }
 }

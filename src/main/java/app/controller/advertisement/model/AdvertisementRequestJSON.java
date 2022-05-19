@@ -1,6 +1,5 @@
 package app.controller.advertisement.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Getter
@@ -9,8 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdvertisementRequestJSON {
-    @JsonProperty("user-id")
-    private Integer userId;
     private String pov;
     private PagedJSON paged;
 }
