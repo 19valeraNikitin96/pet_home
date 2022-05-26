@@ -1,5 +1,39 @@
 # API
+### Register
+Request </p>
+Method: **POST** <p>
+_URL: **/v1/users/register**_
 
+Request body: <p>
+```json
+{
+  "firstname": "Valerii",
+  "lastname": "Nikitin",
+  "phone-numbers": ["0667842311"],
+  "email-addresses": ["vn@gmail.com"],
+  "username": "vampir666",
+  "password": "12345",
+  "notifications": [
+    {
+      "app": "telegram",
+      "frequency": 3
+    },
+    {
+      "app": "viber",
+      "frequency": 6
+    }
+  ],
+  "location-id": 55
+}
+```
+Response body</p>
+
+HTTP status: **200** <p>
+```json
+{
+  "id": 13
+}
+```
 ### Authorization
 Request </p>
 Method: **POST** <p>
@@ -158,41 +192,7 @@ HTTP status: **200** <p>
 ```
 
 ## User
-### Create
-Request </p>
-Method: **POST** <p>
-_URL: **/v1/users**_
 
-Request body: <p>
-```json
-{
-  "firstname": "Valerii",
-  "lastname": "Nikitin",
-  "phone-numbers": ["0667842311"],
-  "email-addresses": ["vn@gmail.com"],
-  "username": "vampir666",
-  "password": "12345",
-  "notifications": [
-    {
-      "app": "telegram",
-      "frequency": 3
-    },
-    {
-      "app": "viber",
-      "frequency": 6
-    }
-  ],
-  "location-id": 55
-}
-```
-Response body</p>
-
-HTTP status: **200** <p>
-```json
-{
-  "id": 13
-}
-```
 
 ### Delete by ID
 Request </p>
