@@ -4,10 +4,15 @@ import app.controller.advertisement.model.AdvertisementJSON;
 import app.controller.advertisement.model.AdvertisementRequestJSON;
 import app.repository.advertisement.AdvertisementRepository;
 import app.repository.advertisement.model.AdvertisementEntity;
+import app.repository.date.model.DateEntity;
+import app.repository.location.model.LocationEntity;
 import app.repository.user.UserRepository;
 import app.service.UserPOVType;
 import app.service.advertisement.AdvertisementService;
 import app.service.advertisement.utils.AdvertisementUtils;
+import app.service.date.DateService;
+import app.service.location.LocationService;
+import app.service.location.utils.LocationUtils;
 import app.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +34,12 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private LocationService locationService;
+    @Autowired
+    private LocationUtils locationUtils;
+    @Autowired
+    private DateService dateService;
 
     @Override
     public Integer create(AdvertisementJSON json) {
@@ -41,7 +52,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         List<AdvertisementEntity> entities = advertisementRepository.findAll();
 
         Predicate<AdvertisementEntity> predicate;
-        switch (type){
+        switch (type) {
             case OWNER:
                 predicate = (entity) -> Objects.equals(entity.getOwner().getId(), userService.getCurrentUserId());
                 break;
@@ -72,7 +83,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         AdvertisementEntity entity;
         try {
             entity = advertisementRepository.getOne(advertisementId);
-        } catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return;
         }
         advertisementRepository.delete(entity);
@@ -86,16 +97,39 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public Integer updateBy(Integer advertisementId, AdvertisementJSON json) {
         AdvertisementEntity entity = advertisementRepository.getOne(advertisementId);
-        if (json.getAge() != null){
+        if (json.getAge() != null) {
             entity.setAge(json.getAge());
         }
-        if (json.getPetName() != null){
+        if (json.getPetName() != null) {
             entity.setPetName(json.getPetName());
         }
-        if (json.getOwnerId() != null){
+        if (json.getOwnerId() != null) {
             entity.setOwner(userRepository.getOne(json.getOwnerId()));
         }
-        // TODO add rest of fields
+        if (json.getLocation() != null) {
+            LocationEntity newLocation = locationUtils.toEntity(json.getLocation());
+            LocationEntity existing = locationService.find(newLocation);
+            if (existing != null) {
+                entity.setLocation(existing);
+            } else {
+                entity.setLocation(newLocation);
+            }
+        }
+        if(json.getDate() != null){
+            DateEntity newDate = advertisementUtils.toEntity(json.getDate());
+            DateEntity existing = dateService.find(newDate);
+            if (existing != null){
+                entity.setDate(existing);
+            }else{
+                entity.setDate(newDate);
+            }
+        }
+        if(json.getSigns() != null){
+            entity.setSigns(json.getSigns());
+        }
+        if(json.getType() != null){
+            entity.setType(json.getType());
+        }
         return advertisementRepository.save(entity).getId();
     }
 }
