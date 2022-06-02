@@ -2,6 +2,9 @@ version: "3"
 
 services:
   pet_home:
+    profiles:
+      - test
+      - prod
     image: pet_home
     environment:
       - DB_URI=/app/pet_home.mv.db
@@ -11,12 +14,16 @@ services:
     networks:
       pet_home_net:
         ipv4_address: 172.50.0.10
+    build:
+      context: .
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://pet_home:8080/advertisements/view" ]
       interval: 30s
       timeout: 10s
       retries: 5
   pet_home_testing:
+    profiles:
+      - test
     environment:
       - ADDR=172.50.0.10
     image: pet_home_testing
