@@ -6,6 +6,10 @@ import app.repository.user.model.UserEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
 import java.util.List;
 
 @Entity
@@ -30,10 +34,10 @@ public class AdvertisementEntity {
     @Column(name = "type")
     private String type;
     @JoinColumn(name = "location_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {PERSIST, MERGE, REFRESH, DETACH})
     private LocationEntity location;
     @JoinColumn(name = "date_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {PERSIST, MERGE, REFRESH, DETACH})
     private DateEntity date;
     @JoinColumn(name = "owner_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)

@@ -194,19 +194,6 @@ HTTP status: **200** <p>
 }
 ```
 
-### Delete by ID
-Request </p>
-Method: **DELETE** <p>
-_URL: **/v1/users/{userId}**_
-
-Response body</p>
-HTTP status: **200** <p>
-```json
-{
-  "msg": "Ok"
-}
-```
-
 ### Update by ID
 Request </p>
 Method: **PUT** <p>
