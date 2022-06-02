@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/v1")
 public class UserController {
@@ -88,7 +90,15 @@ public class UserController {
 
     @PostMapping("/users/auth")
     public ResponseEntity auth(@RequestBody AuthRequestJSON request) {
-        UserEntity u = userService.findByUsernameAndPassword(request.getUsername(), request.getPassword());
+        UserEntity u;
+        try {
+            u = userService.findByUsernameAndPassword(request.getUsername(), request.getPassword());
+            if (u == null) {
+                throw new NoSuchElementException();
+            }
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.badRequest().build();
+        }
         String generatedToken = jwtProvider.generateToken(u.getUsername());
         Object obj = new Object(){
             {
