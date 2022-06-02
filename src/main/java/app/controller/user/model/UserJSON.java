@@ -20,6 +20,6 @@ public class UserJSON {
     private String username;
     private String password;
     private List<NotificationJSON> notifications;
-    @JsonProperty("json-id")
+    @JsonProperty("location-id")
     private Integer locationId;
 }

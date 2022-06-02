@@ -21,7 +21,7 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
     @JoinColumn(name = "person_id", nullable = false)
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private PersonEntity person;
 //    TODO add annotations
 //    private List<NotificationEntity> notifications;

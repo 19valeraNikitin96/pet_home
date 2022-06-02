@@ -49,7 +49,10 @@ public class UserUtilsImpl implements UserUtils{
                 .firstname(e.getPerson().getFirstname())
                 .lastname(e.getPerson().getLastname())
                 .username(e.getUsername())
-                // TODO add other fields
+                .password(e.getPassword())
+                .emailAddresses(e.getPerson().getEmailAddresses())
+                .phoneNumbers(e.getPerson().getPhoneNumbers())
+                .locationId(e.getPerson().getLocation().getId())
                 .build();
     }
 }
