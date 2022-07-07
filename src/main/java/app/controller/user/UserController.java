@@ -20,35 +20,14 @@ public class UserController {
     @Autowired
     private JwtProvider jwtProvider;
 
-    @PostMapping("/users")
-    public ResponseEntity createUser(@RequestBody UserJSON json) {
-        Integer userId = userService.create(json);
-        Object obj = new Object(){
-            {
-                setId(userId);
-            }
-
-            private Integer id;
-
-            public void setId(Integer id){
-                this.id = id;
-            }
-
-            public Integer getId(){
-                return this.id;
-            }
-        };
-        return ResponseEntity.ok(obj);
+    @GetMapping("/users")
+    public ResponseEntity getById() {
+        return ResponseEntity.ok(userService.getById());
     }
 
-    @GetMapping("/users/{userId}")
-    public ResponseEntity getById(@PathVariable("userId") Integer id) {
-        return ResponseEntity.ok(userService.getById(id));
-    }
-
-    @PutMapping("/users/{userId}")
-    public ResponseEntity updateById(@RequestBody UserJSON json, @PathVariable("userId") Integer id){
-        Integer userId = userService.updateUser(id, json);
+    @PutMapping("/users")
+    public ResponseEntity update(@RequestBody UserJSON json){
+        Integer userId = userService.updateUser(json);
         Object obj = new Object(){
             {
                 setId(userId);

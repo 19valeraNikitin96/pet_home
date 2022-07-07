@@ -197,7 +197,7 @@ HTTP status: **200** <p>
 ### Update by ID
 Request </p>
 Method: **PUT** <p>
-_URL: **/v1/users/{userId}**_
+_URL: **/v1/users**_
 
 Request body: <p>
 ```json
@@ -227,7 +227,7 @@ HTTP status: **200** <p>
 ### Get by ID
 Request </p>
 Method: **GET** <p>
-_URL: **/v1/users/{userId}**_
+_URL: **/v1/users**_
 
 Response body</p>
 HTTP status: **200** <p>

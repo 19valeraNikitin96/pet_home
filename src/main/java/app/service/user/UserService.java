@@ -7,8 +7,8 @@ import app.repository.user.model.UserEntity;
 public interface UserService {
     Integer create(UserJSON json);
 
-    UserJSON getById(Integer id);
-    Integer updateUser(Integer id, UserJSON json);
+    UserJSON getById();
+    Integer updateUser(UserJSON json);
 
     UserEntity findByUsername(String username);
     UserEntity findByUsernameAndPassword(String username, String password);

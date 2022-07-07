@@ -25,13 +25,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserJSON getById(Integer id) {
-        return userUtils.toJSON(userRepository.findById(id).get());
+    public UserJSON getById() {
+        return userUtils.toJSON(userRepository.findById(this.getCurrentUserId()).get());
     }
 
     @Override
-    public Integer updateUser(Integer id, UserJSON json) {
-        UserEntity entity = userRepository.findById(id).get();
+    public Integer updateUser(UserJSON json) {
+        UserEntity entity = userRepository.findById(this.getCurrentUserId()).get();
         if (json.getFirstname() != null) {
             entity.getPerson().setFirstname(json.getFirstname());
         }
