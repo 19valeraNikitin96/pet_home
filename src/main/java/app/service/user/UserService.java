@@ -16,4 +16,8 @@ public interface UserService {
     CustomUserDetails loadUserByUsername(String username);
 
     Integer getCurrentUserId();
+
+    void activate(String token);
+
+    boolean isActivated(String email);
 }

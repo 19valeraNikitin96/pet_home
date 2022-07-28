@@ -6,6 +6,7 @@ import app.controller.user.model.UserJSON;
 import app.repository.user.model.UserEntity;
 import app.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,6 +68,16 @@ public class UserController {
         return ResponseEntity.ok(obj);
     }
 
+    @GetMapping("/activation/{token}")
+    public ResponseEntity activate(@PathVariable String token){
+        try{
+            userService.activate(token);
+            return ResponseEntity.ok().build();
+        }catch (Exception exc){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
     @PostMapping("/users/auth")
     public ResponseEntity auth(@RequestBody AuthRequestJSON request) {
         UserEntity u;
@@ -77,6 +88,10 @@ public class UserController {
             }
         } catch (NoSuchElementException e) {
             return ResponseEntity.badRequest().build();
+        }
+        String email = u.getPerson().getEmailAddresses().get(0);
+        if (!userService.isActivated(email)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         String generatedToken = jwtProvider.generateToken(u.getUsername());
         Object obj = new Object(){

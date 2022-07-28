@@ -17,6 +17,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.UUID;
 
 @SpringBootApplication
 public class Application {
@@ -39,8 +40,6 @@ public class Application {
             for (String beanName : beanNames) {
                 System.out.println(beanName);
             }
-
-            emailService.sendSimpleMessage("gikovaj232@logodez.com", "test", "Hello U");
         };
     }
 
@@ -54,13 +53,13 @@ public class Application {
         return new LocationUtilsImpl();
     }
 
-    @Value("$(pethome.mail.username)")
+    @Value("${pethome.mail.username}")
     private String username;
-    @Value("$(pethome.mail.password)")
+    @Value("${pethome.mail.password}")
     private String password;
-    @Value("$(pethome.mail.host)")
+    @Value("${pethome.mail.host}")
     private String mailHost;
-    @Value("$(pethome.mail.port)")
+    @Value("${pethome.mail.port}")
     private Integer port;
 
     @Bean
@@ -79,5 +78,10 @@ public class Application {
         props.put("mail.debug", "true");
 
         return mailSender;
+    }
+
+    @Bean(name = "randomUUID")
+    public UUID getRandomUUID(){
+        return UUID.randomUUID();
     }
 }
