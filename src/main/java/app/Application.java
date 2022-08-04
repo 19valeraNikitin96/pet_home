@@ -22,9 +22,6 @@ import java.util.UUID;
 @SpringBootApplication
 public class Application {
 
-    @Autowired
-    private EmailService emailService;
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
