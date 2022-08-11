@@ -2,10 +2,8 @@ package app;
 
 import app.service.advertisement.utils.AdvertisementUtils;
 import app.service.advertisement.utils.impl.AdvertisementUtilsImpl;
-import app.service.email.EmailService;
 import app.service.location.utils.LocationUtils;
 import app.service.location.utils.LocationUtilsImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
